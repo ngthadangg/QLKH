@@ -82,10 +82,10 @@ public class LoginServlet extends HttpServlet {
                 // Người dùng tồn tại, bạn có thể lấy thông tin khác nếu cần
                 // Ví dụ: String name = resultSet.getString("name");
 
-                // Lưu thông tin người dùng vào session
+////                 Lưu thông tin người dùng vào session
 //                HttpSession session = request.getSession();
 //                session.setAttribute("email", email);
-//                session.setAttribute("role", role);
+////                session.setAttribute("role", role);
 
                 return true;
             } else {

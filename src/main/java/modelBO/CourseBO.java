@@ -11,9 +11,9 @@ public class CourseBO {
     private Connection connection;
     private CourseDAO courseDAO;
 
-    public CourseBO(Connection connection) {
+    public CourseBO(Connection connection) throws SQLException {
         this.connection = connection;
-        this.courseDAO = new CourseDAO(connection);
+        this.courseDAO = new CourseDAO();
     }
 
     public List<Course> getAllCourses() throws SQLException {
