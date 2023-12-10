@@ -70,10 +70,10 @@ public class GiangVienController  extends HttpServlet {
             throw new RuntimeException(e);
         }
         request.setAttribute("courses", courses);
+        System.out.println("Dữ liệu đã được đặt vào request: " + courses);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("homeGV.jsp");
+        dispatcher.forward(request, response);
 
-
-        // Forward đến trang JSP
-        response.sendRedirect("homeGV.jsp");
 
     }
 }
