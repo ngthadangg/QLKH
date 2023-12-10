@@ -104,7 +104,7 @@ public class LoginServlet extends HttpServlet {
 
     private String getRedirectURL(String role) {
         if (!Objects.equals(role, "admin")) {
-            if (Objects.equals(role, "giangvien")) return "homeGV.jsp";
+            if (Objects.equals(role, "giangvien")) return "giangvienController";
             else {
                 return  "homeSV.jsp";
             }

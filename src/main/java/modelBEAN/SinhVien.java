@@ -2,16 +2,31 @@ package modelBEAN;
 
 public class SinhVien {
     private  int IDSV;
+    private  String name;
+
     private String email;
     private  String password;
 
-    public  SinhVien(int IDSV, String email, String password){
+    public  SinhVien (){
+
+    }
+
+    public  SinhVien(int IDSV,String name,  String email, String password){
         this.IDSV = IDSV;
+        this.name = name;
         this.email = email;
         this.password = password;
     }
     public int getIDSV() {
         return IDSV;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {
@@ -33,4 +48,5 @@ public class SinhVien {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

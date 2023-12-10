@@ -1,5 +1,4 @@
-<!-- Trang JSP cho home của giảng viên (/WEB-INF/views/teacher/home.jsp) -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -12,14 +11,22 @@
 
 <h2>Danh sách bài giảng</h2>
 
-<c:forEach var="course" items="${courses}">
-    <h3>${course.courseName}</h3>
-    <ul>
-        <c:forEach var="video" items="${course.videos}">
-            <li>${video.videoName}</li>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID Bài giảng</th>
+            <th>Tên bài giảng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="course" items="${courses}">
+            <tr>
+                <td>${course.getCourse_id()}</td>
+                <td>${course.getCourse_name()}</td>
+            </tr>
         </c:forEach>
-    </ul>
-</c:forEach>
+    </tbody>
+</table>
 
 </body>
 </html>

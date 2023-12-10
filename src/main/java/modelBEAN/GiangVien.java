@@ -4,11 +4,17 @@ public class GiangVien {
     private int IDGV;
     private  String email;
     private  String password;
+    private  String name;
 
-    public GiangVien(int IDGV, String email, String password){
+    public GiangVien(){
+
+    }
+
+    public GiangVien(int IDGV, String email, String password, String name){
         this.IDGV = IDGV;
         this.email = email;
         this.password = password;
+        this.name = name;
     }
 
     public void setIDGV(int IDGV) {
@@ -27,5 +33,20 @@ public class GiangVien {
         return IDGV;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

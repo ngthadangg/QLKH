@@ -1,6 +1,7 @@
 package controller;
 
 import modelBEAN.Course;
+import modelBEAN.GiangVien;
 import modelDAO.CourseDAO;
 import modelDAO.GiangVienDAO;
 import util.DBUtil;
@@ -17,8 +18,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/courseController")
-public class CourseController extends HttpServlet {
+@WebServlet("/giangvienController")
+
+public class GiangVienController  extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,26 +45,35 @@ public class CourseController extends HttpServlet {
         }
 
         int IDGV = 0;
+        GiangVien giangVien = new GiangVien();
         try {
             IDGV = giangVienDAO.getIDGVByEmail(email);
             System.out.println("IDGV: "+ IDGV);
+            giangVien = giangVienDAO.getGiangVienByID(IDGV);
+            System.out.println("IDGV: "+ giangVien.getIDGV() + " Ten Giang vien: " + giangVien.getName() + " Email: " + giangVien.getEmail() );
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         List<Course> courses = null;
         try {
-//            courses = courseDAO.getCoursesByTeacherId(IDGV);
             courses = giangVienDAO.getCoursesByTeacherId(IDGV);
+
+            System.out.println("Lay danh sach course thanh cong");
+
+            for (Course course : courses) {
+                System.out.println("ID khóa học: " + course.getCourse_id());
+                System.out.println("Tên khóa học: " + course.getCourse_name());
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        // Đặt danh sách bài giảng vào request để truy cập trong JSP
         request.setAttribute("courses", courses);
 
+
         // Forward đến trang JSP
-        response.sendRedirect("courseController");
+        response.sendRedirect("homeGV.jsp");
 
     }
-
 }
