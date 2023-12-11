@@ -11,6 +11,10 @@
 
 </head>
 <body>
+    <div class="container">
+
+    <button onclick="goBack()" class="btn btn-secondary">Quay lại</button>
+
     <h1>Danh sách sinh vien</h1>
     <!-- Nút thêm sinh viên -->
         <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#addStudentModal">
@@ -43,6 +47,13 @@
     <% } else { %>
         <p>Không có sinh vien  nào tham gia khóa học này.</p>
     <% } %>
+        <%-- Kiểm tra xem có thông báo lỗi không --%>
+        <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+        <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
+            </div>
+        <% } %>
     <!-- Modal thêm sinh viên -->
         <div class="modal fade" id="addStudentModal" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -70,7 +81,19 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        function confirmDelete(email) {
+                if (confirm("Bạn có chắc chắn muốn xoá sinh viên có email: " + email + "?")) {
+                    // Chuyển đến servlet để xử lý xoá
+                    window.location.href = "sinhvienController?action=delete&email=" + email;
+                }
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

@@ -41,7 +41,6 @@ public class SinhVienController extends HttpServlet {
         setCourseID(Integer.parseInt(courseId));
         System.out.println("CourseID dua vao DoGet:"+ courseId);
 
-        // Lấy danh sách các video cho khóa học
         SinhVienDAO sinhVienDAO = null;
 
         try {
@@ -87,7 +86,8 @@ public class SinhVienController extends HttpServlet {
                 } else {
                     // Xử lý trường hợp không tìm thấy sinh viên
                     System.err.println("Không tìm thấy sinh viên cho email: " + email);
-                    // Có thể chuyển hướng hoặc hiển thị thông báo lỗi
+                    request.setAttribute("errorMessage", "Không tìm thấy sinh viên cos email: " + email);
+                    request.getServletContext().getRequestDispatcher("/viewSV.jsp").forward(request, response);
                 }
             } catch (SQLException e) {
                 // Xử lý lỗi một cách chặt chẽ hơn (ghi log hoặc hiển thị thông báo lỗi)
@@ -98,3 +98,4 @@ public class SinhVienController extends HttpServlet {
     }
 
 }
+
