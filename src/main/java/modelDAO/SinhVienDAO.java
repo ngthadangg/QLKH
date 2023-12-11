@@ -50,6 +50,46 @@ public class SinhVienDAO {
         return sinhvien;
 
     }
+    public static SinhVien getSVByEmail(String email) throws  SQLException{
+        SinhVien sinhvien = null;
+
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM sinhvien WHERE email = ?"))
+        {
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()){
+                if (resultSet.next()) {
+                    sinhvien.setIDSV(resultSet.getInt("sinhvien_id"));
+                    sinhvien.setName(resultSet.getString("ho_ten"));
+                    sinhvien.setEmail(resultSet.getString("email"));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi lấy email: " + e.getMessage());
+            throw e;
+        }
+        return sinhvien;
+
+    }
+    public int getIDSVByEmail(String email) throws SQLException {
+        try (PreparedStatement statement = connection.prepareStatement("SELECT sinhvien_id FROM sinhvien WHERE email = ?")) {
+            statement.setString(1, email);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("sinhvien_id");
+                }
+            }
+        } catch (SQLException e) {
+            // Log the exception (or rethrow it if you have a specific reason to do so)
+            System.err.println("Lỗi khi lấy email: " + e.getMessage());
+            throw e;
+        }
+        return 0;
+    }
+
+
     public static List<SinhVien> getAllSinhVienByCourseID(int courseID) throws SQLException{
         List<SinhVien> sinhViens = new ArrayList<>();
 
@@ -70,5 +110,24 @@ public class SinhVienDAO {
         }
         return sinhViens;
     }
+
+    public void  addSinhVienToCourse(int IDSV, int courseID) throws SQLException{
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO sinhvien_course (sinhvien_id, course_id) VALUES (?, ?)")) {
+            statement.setInt(1,IDSV);
+            statement.setInt(2, courseID);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected == 0) {
+                System.err.println("Thêm sinh viên vào khoá học không thành công: " + IDSV + ", " + courseID);
+                // Có thể xử lý lỗi hoặc ném một exception tùy ý
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi thêm sinh viên vào khoá học: " + e.getMessage());
+            throw e;
+        }
+
+    }
+
 
 }

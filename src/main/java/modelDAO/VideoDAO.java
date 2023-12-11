@@ -62,6 +62,15 @@ public class VideoDAO {
 
         return videos;
     }
+    public void addVideoToCourse(Video video) throws SQLException{
+        try (PreparedStatement statement = connection.prepareStatement("INSERT INTO video (video_title, course_id, file_path) VALUES (?, ?, ?)")) {
+            statement.setString(1, video.getVideo_title());
+            statement.setInt(2, video.getCourse_id());
+            statement.setString(3, video.getFile_path());
+            statement.executeUpdate();
+        }
+    }
+
 
     public Connection getConnection() {
         return connection;

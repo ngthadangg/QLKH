@@ -24,9 +24,22 @@ import java.util.List;
 public class SinhVienController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    private int courseID ;
+
+    public void setCourseID(int courseID) {
+        this.courseID = courseID;
+    }
+
+    public int getCourseID() {
+        return courseID;
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Lấy thông tin giảng viên từ session (đã đăng nhập)
         String courseId = request.getParameter("courseId");
+
+        setCourseID(Integer.parseInt(courseId));
+        System.out.println("CourseID dua vao DoGet:"+ courseId);
 
         // Lấy danh sách các video cho khóa học
         SinhVienDAO sinhVienDAO = null;
@@ -48,4 +61,40 @@ public class SinhVienController extends HttpServlet {
         request.getServletContext().getRequestDispatcher("/viewSV.jsp").forward(request, response);
 
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String email = request.getParameter("studentEmail");
+        int courseID = getCourseID();
+        System.out.println(("Course_ID: "+ courseID+ " email : " + email));
+
+        if (email != null && !email.isEmpty()) {
+            SinhVienDAO sinhVienDAO = null;
+
+            try {
+                sinhVienDAO = new SinhVienDAO();
+                int IDSV = sinhVienDAO.getIDSVByEmail(email);
+                System.out.println("IDSV: "+ IDSV);
+
+                // Kiểm tra IDSV trước khi thêm vào khoá học
+                if (IDSV != 0) {
+                    sinhVienDAO.addSinhVienToCourse(IDSV, courseID);
+
+                    List<SinhVien> sinhViens = SinhVienDAO.getAllSinhVienByCourseID(courseID);
+
+                    // Hiển thị danh sách sinh viên
+                    request.setAttribute("sinhviens", sinhViens);
+                    request.getServletContext().getRequestDispatcher("/viewSV.jsp").forward(request, response);
+                } else {
+                    // Xử lý trường hợp không tìm thấy sinh viên
+                    System.err.println("Không tìm thấy sinh viên cho email: " + email);
+                    // Có thể chuyển hướng hoặc hiển thị thông báo lỗi
+                }
+            } catch (SQLException e) {
+                // Xử lý lỗi một cách chặt chẽ hơn (ghi log hoặc hiển thị thông báo lỗi)
+                e.printStackTrace();
+                throw new RuntimeException("Lỗi khi thực hiện các thao tác cơ sở dữ liệu", e);
+            }
+        }
+    }
+
 }

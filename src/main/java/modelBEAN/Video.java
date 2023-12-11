@@ -3,13 +3,13 @@ package modelBEAN;
 public class Video {
     private  int IDVD;
     private  String video_title;
-    private  String course_id;
+    private  int course_id;
     private String  file_path;
 
     public  Video(){
 
     }
-    public Video(int IDVD, String video_title, String course_id, String file_path){
+    public Video(int IDVD, String video_title, int course_id, String file_path){
         this.IDVD = IDVD;
         this.video_title = video_title;
         this.course_id  = course_id;
@@ -20,7 +20,7 @@ public class Video {
         this.IDVD = IDVD;
     }
 
-    public void setCourse_id(String course_id) {
+    public void setCourse_id(int course_id) {
         this.course_id = course_id;
     }
 
@@ -36,7 +36,7 @@ public class Video {
         return IDVD;
     }
 
-    public String getCourse_id() {
+    public int getCourse_id() {
         return course_id;
     }
 
