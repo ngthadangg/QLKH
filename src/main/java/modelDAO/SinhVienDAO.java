@@ -128,6 +128,24 @@ public class SinhVienDAO {
         }
 
     }
+    public void  deleteSinhVienToCourse(int IDSV, int courseID) throws SQLException{
+        try (PreparedStatement statement = connection.prepareStatement("DELETE FROM sinhvien_course (sinhvien_id, course_id) VALUES (?, ?)")) {
+            statement.setInt(1,IDSV);
+            statement.setInt(2, courseID);
+
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.err.println("Xoá sinh viên vào khoá học thành công: " + IDSV + ", " + courseID);
+                // Có thể xử lý lỗi hoặc ném một exception tùy ý
+            }
+        } catch (SQLException e) {
+            System.err.println("Lỗi khi xoa sinh viên vào khoá học: " + e.getMessage());
+            throw e;
+        }
+
+    }
+
 
 
 }

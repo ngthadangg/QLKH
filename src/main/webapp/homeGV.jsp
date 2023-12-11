@@ -12,6 +12,8 @@
 </head>
 <body>
     <div class="container">
+        <button onclick="goBack()" class="btn btn-secondary">Quay lại</button>
+
         <h1>Danh sách các khoá học</h1>
 
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addCourseModal">
@@ -73,6 +75,11 @@
             </div>
         </div>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <!-- Add Bootstrap JS and Popper.js scripts (optional) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

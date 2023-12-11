@@ -23,6 +23,8 @@
                 List<Video> videos = (List<Video>) request.getAttribute("videos");
             %>
     <div class="container">
+        <button onclick="goBack()" class="btn btn-secondary">Quay lại</button>
+
         <h1>Danh sách các video: </h1>
 
 
@@ -41,7 +43,8 @@
                         <tr>
                             <td><%= video.getIDVD() %></td>
                             <td><%= video.getVideo_title() %></td>
-                            <td><%= video.getFile_path() %></td>
+                            <td><a href="<%= video.getFile_path() %>"><%= video.getFile_path() %></a></td>
+
                         </tr>
                     <% } %>
                 </tbody>
@@ -84,6 +87,11 @@
         </div>
     </div>
 
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
