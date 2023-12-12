@@ -1,6 +1,7 @@
 <%@ page import="modelBEAN.Video" %>
 <%@ page import="java.util.List" %>
-<%@ page import="modelBEAN.SinhVien" %><%--
+<%@ page import="modelBEAN.SinhVien" %>
+<%@ page import="modelBEAN.Course" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 12/12/2023
@@ -73,6 +74,9 @@
                     <a class="nav-link custom-btn btn" href="#"><%=name%></a>
                 </li>
                 <%}%>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link custom-btn btn" href="login.jsp">Login</a>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>
@@ -87,13 +91,14 @@
             <div class="row">
 
                 <div class="col-lg-12 col-12 text-center">
-                    <h1 class="text-white">Tên khoá học</h1>
+                    <%Course course = (Course) request.getAttribute("course");%>
+                    <h1 class="text-white">Khoá học <%=course.getCourse_name()%></h1>
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Job Details</li>
+                            <li class="breadcrumb-item active" aria-current="page">Video Details</li>
                         </ol>
                     </nav>
                 </div>
@@ -113,6 +118,7 @@
                     <h2 class="job-title mb-0"><%=video.getVideo_title()%>></h2>
 
                     <div class="job-thumb job-thumb-detail">
+<%--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/zz_5_kkXBLs?si=KVqxpd4MuD8yRZnG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>--%>
                         <%=video.getFile_path()%>
                         <h4 class="mt-4 mb-2">Job Description</h4>
 
@@ -123,8 +129,7 @@
                     <div class="job-thumb job-thumb-detail-box bg-white shadow-lg">
                         <h3>Danh sách học viên</h3>
                         <%
-                            List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhViens");
-                            for (SinhVien sinhVien : sinhViens) System.out.println(sinhVien.getName());
+                            List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhVienss");
                             int i = 1;
                             for(SinhVien sinhVien : sinhViens){
                         %>

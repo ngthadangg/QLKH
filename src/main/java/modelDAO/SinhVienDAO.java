@@ -102,7 +102,7 @@ public class SinhVienDAO {
                     sinhVien.setIDSV(resultSet.getInt("sinhvien_id"));
 
                     sinhVien = getSVByIDSV(sinhVien.getIDSV());
-
+                    System.out.println(sinhVien.getName());
                     sinhViens.add(sinhVien);
                 }
             }
