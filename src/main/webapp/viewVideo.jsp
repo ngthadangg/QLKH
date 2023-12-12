@@ -73,6 +73,9 @@
                     <a class="nav-link custom-btn btn" href="#"><%=name%></a>
                 </li>
                 <%}%>
+<%--                <li class="nav-item">--%>
+<%--                    <a class="nav-link custom-btn btn" href="login.jsp">Login</a>--%>
+<%--                </li>--%>
             </ul>
         </div>
     </div>
@@ -123,8 +126,7 @@
                     <div class="job-thumb job-thumb-detail-box bg-white shadow-lg">
                         <h3>Danh sách học viên</h3>
                         <%
-                            List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhViens");
-                            for (SinhVien sinhVien : sinhViens) System.out.println(sinhVien.getName());
+                            List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhVienss");
                             int i = 1;
                             for(SinhVien sinhVien : sinhViens){
                         %>

@@ -71,7 +71,7 @@ public class VideoDAO {
                     video.setIDVD(resultSet.getInt("video_id"));
                     video.setVideo_title(resultSet.getString("video_title"));
                     video.setFile_path(resultSet.getString("file_path"));
-
+                    video.setCourse_id(resultSet.getInt("course_id"));
                     break;
                 }
             }

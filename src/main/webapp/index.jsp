@@ -61,20 +61,23 @@
                 </li>
                 <li class="nav-item ms-lg-auto">
                 </li>
-                <%
-                    String name = null;
-                    if(name == null){ %>
-                    <li class="nav-item">
-                        <a class="nav-link custom-btn btn" href="login.jsp">Login</a>
-                    </li>
-                    <%
-                    }
-                    else {
-                %>
-                <li>
-                    <a class="nav-link custom-btn btn" href="#"><%=name%></a>
+<%--                <%--%>
+<%--                    String name = null;--%>
+<%--                    if(name == null){ %>--%>
+<%--                    <li class="nav-item">--%>
+<%--                        <a class="nav-link custom-btn btn" href="login.jsp">Login</a>--%>
+<%--                    </li>--%>
+<%--                    <%--%>
+<%--                    }--%>
+<%--                    else {--%>
+<%--                %>--%>
+<%--                <li>--%>
+<%--                    <a class="nav-link custom-btn btn" href="#"><%=name%></a>--%>
+<%--                </li>--%>
+<%--                <%}%>--%>
+                <li class="nav-item">
+                    <a class="nav-link custom-btn btn" href="login.jsp">Login</a>
                 </li>
-                <%}%>
             </ul>
         </div>
     </div>

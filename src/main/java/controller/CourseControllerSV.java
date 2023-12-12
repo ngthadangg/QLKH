@@ -49,9 +49,9 @@ public class CourseControllerSV extends HttpServlet {
                 List<SinhVien> sinhViens = new ArrayList<>();
                 for(int id : studentIDs){
                     System.out.println(id);
-                    sinhViens.add(sinhVienBO.getSinhVienById(id));
+                    SinhVien sinhVien = sinhVienBO.getSinhVienById(id);
+                    sinhViens.add(sinhVien);
                 }
-
                 request.setAttribute("sinhViens", sinhViens);
                 request.setAttribute("course", course);
                 request.setAttribute("videos", videos);
