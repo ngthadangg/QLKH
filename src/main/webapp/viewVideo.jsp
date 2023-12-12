@@ -1,4 +1,6 @@
-<%@ page import="modelBEAN.Video" %><%--
+<%@ page import="modelBEAN.Video" %>
+<%@ page import="java.util.List" %>
+<%@ page import="modelBEAN.SinhVien" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 12/12/2023
@@ -100,7 +102,9 @@
         </div>
     </header>
 
-    <%Video video = (Video) request.getAttribute("video");%>
+    <%Video video = (Video) request.getAttribute("video");
+
+    %>
     <section class="job-section section-padding pb-0">
         <div class="container">
             <div class="row">
@@ -115,7 +119,19 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
-
+                <div class="col-lg-4 col-12 mt-5 mt-lg-0">
+                    <div class="job-thumb job-thumb-detail-box bg-white shadow-lg">
+                        <h3>Danh sách học viên</h3>
+                        <%
+                            List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhViens");
+                            for (SinhVien sinhVien : sinhViens) System.out.println(sinhVien.getName());
+                            int i = 1;
+                            for(SinhVien sinhVien : sinhViens){
+                        %>
+                        <p><%=i++%>. <%=sinhVien.getName()%></p>
+                        <%}%>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

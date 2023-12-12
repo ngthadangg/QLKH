@@ -173,8 +173,8 @@
                 <img src="images/logo.png" class="img-fluid logo-image">
 
                 <div class="d-flex flex-column">
-                    <strong class="logo-text">Gotto</strong>
-                    <small class="logo-slogan">Online Job Portal</small>
+                    <strong class="logo-text">Learn</strong>
+                    <small class="logo-slogan">Elearning Course</small>
                 </div>
             </a>
         </div>

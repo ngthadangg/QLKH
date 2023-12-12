@@ -141,7 +141,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="job-thumb d-flex">
                         <div class="job-image-wrap bg-white shadow-lg">
-                            <img src="images/logos/google.png" class="job-image img-fluid" alt="">
+                            <img src="images/youtubeLogo.jpg" class="job-image img-fluid" alt="">
                         </div>
 
                         <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">

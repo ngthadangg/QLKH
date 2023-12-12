@@ -131,7 +131,7 @@
                                     <div class="job-image-wrap d-flex align-items-center bg-white shadow-lg mt-2 mb-4">
                                         <img src="images/avaNull.png" class="job-image me-3 img-fluid" alt="">
 
-    <%--                                    <p class="mb-0">Id giảng viên <%=course.getIDGV()%></p>--%>
+<%--                                        <p class="mb-0">Id giảng viên <%=course.getIDGV()%></p>--%>
                                     </div>
                                     <a href="#" class="bi-bookmark ms-auto me-2">
                                     </a>
