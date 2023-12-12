@@ -118,6 +118,7 @@
                     <h2 class="job-title mb-0"><%=video.getVideo_title()%>></h2>
 
                     <div class="job-thumb job-thumb-detail">
+<%--                        <iframe width="560" height="315" src="https://www.youtube.com/embed/zz_5_kkXBLs?si=KVqxpd4MuD8yRZnG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>--%>
                         <%=video.getFile_path()%>
                         <h4 class="mt-4 mb-2">Job Description</h4>
 
