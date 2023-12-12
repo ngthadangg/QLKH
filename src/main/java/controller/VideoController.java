@@ -1,9 +1,11 @@
 package controller;
 
+import modelBEAN.Course;
 import modelBEAN.SinhVien;
 import modelBEAN.Video;
 import modelBO.SinhVienBO;
 import modelBO.Sinhvien_course_BO;
+import modelDAO.CourseDAO;
 import modelDAO.SinhVienDAO;
 import modelDAO.VideoDAO;
 
@@ -28,10 +30,12 @@ public class VideoController extends HttpServlet {
             VideoDAO videoDAO = new VideoDAO();
             Video video = videoDAO.getVideoByVideoID(videoID);
             System.out.println("Khoá học: " + video.getCourse_id());
+            CourseDAO courseDAO = new CourseDAO();
+            Course course = courseDAO.getCoursesById(video.getCourse_id());
             List<SinhVien> sinhViens = SinhVienDAO.getAllSinhVienByCourseID(video.getCourse_id());
 
             for(SinhVien sinhVien : sinhViens) System.out.println(sinhVien.getName());
-
+            request.setAttribute("course", course);
             request.setAttribute("sinhVienss", sinhViens);
             request.setAttribute("video", video);
             request.getServletContext().getRequestDispatcher("/viewVideo.jsp").forward(request, response);

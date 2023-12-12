@@ -1,6 +1,7 @@
 <%@ page import="modelBEAN.Video" %>
 <%@ page import="java.util.List" %>
-<%@ page import="modelBEAN.SinhVien" %><%--
+<%@ page import="modelBEAN.SinhVien" %>
+<%@ page import="modelBEAN.Course" %><%--
   Created by IntelliJ IDEA.
   User: PC
   Date: 12/12/2023
@@ -90,13 +91,14 @@
             <div class="row">
 
                 <div class="col-lg-12 col-12 text-center">
-                    <h1 class="text-white">Tên khoá học</h1>
+                    <%Course course = (Course) request.getAttribute("course");%>
+                    <h1 class="text-white">Khoá học <%=course.getCourse_name()%></h1>
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
 
-                            <li class="breadcrumb-item active" aria-current="page">Job Details</li>
+                            <li class="breadcrumb-item active" aria-current="page">Video Details</li>
                         </ol>
                     </nav>
                 </div>
