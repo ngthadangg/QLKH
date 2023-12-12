@@ -60,6 +60,26 @@ public class VideoDAO {
 
         return videos;
     }
+    public Video getVideoByVideoID(int videoID){
+        Video video = new Video();
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM video WHERE video_id = ?")
+        ) {
+            statement.setInt(1, videoID);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    video.setIDVD(resultSet.getInt("video_id"));
+                    video.setVideo_title(resultSet.getString("video_title"));
+                    video.setFile_path(resultSet.getString("file_path"));
+
+                    break;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return  video;
+    }
     public void addVideoToCourse(Video video) throws SQLException{
         try (PreparedStatement statement = connection.prepareStatement("INSERT INTO video (video_title, course_id, file_path) VALUES (?, ?, ?)")) {
             statement.setString(1, video.getVideo_title());

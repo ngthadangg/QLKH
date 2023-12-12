@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class SinhVienBO {
     public SinhVien getSinhVienById(int IDSV){
-        SinhVienDAO sinhVienDAO = null;
         try {
-            sinhVienDAO = new SinhVienDAO();
-            return  sinhVienDAO.getSVByIDSV(IDSV);
+            SinhVienDAO sinhVienDAO = new SinhVienDAO();
+            SinhVien sinhVien = sinhVienDAO.getSVByIDSV(IDSV);
+            return  sinhVien;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

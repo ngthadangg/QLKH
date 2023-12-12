@@ -51,7 +51,7 @@ public class SinhVienDAO {
 
     }
     public static SinhVien getSVByEmail(String email) throws  SQLException{
-        SinhVien sinhvien = null;
+        SinhVien sinhvien = new SinhVien();
 
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM sinhvien WHERE email = ?"))
         {

@@ -1,11 +1,16 @@
-<%@ page import="modelBEAN.Course" %>
-<%@ page import="java.util.List" %>
 <%@ page import="modelBEAN.Video" %>
-<%@ page import="modelBEAN.SinhVien" %>
+<%@ page import="java.util.List" %>
+<%@ page import="modelBEAN.SinhVien" %><%--
+  Created by IntelliJ IDEA.
+  User: PC
+  Date: 12/12/2023
+  Time: 3:49 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Chi tiết khoá học</title>
+    <title>Chi tiết khoá học </title>
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -22,42 +27,12 @@
     <link href="css/owl.theme.default.min.css" rel="stylesheet">
 
     <link href="css/tooplate-gotto-job.css" rel="stylesheet">
-    <style>
-        h1 {
-            text-align: center;
-        }
-        .menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: #000;
-            padding: 10px 0;
-            font-size: larger;
-            align-self: center;
-        }
-
-        .menu a:hover {
-            color: #ff0000;
-        }
-
-        .menu p {
-            font-size: larger;
-            align-self: center;
-            font-weight: bold;
-        }
-    </style>
 </head>
-
 <body class="job-listings-page" id="top">
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.jsp">
+        <a class="navbar-brand d-flex align-items-center" href="index.html">
             <img src="images/logo.png" class="img-fluid logo-image">
 
             <div class="d-flex flex-column">
@@ -112,12 +87,13 @@
             <div class="row">
 
                 <div class="col-lg-12 col-12 text-center">
-                    <h1 class="text-white">Danh sách các bài giảng</h1>
+                    <h1 class="text-white">Tên khoá học</h1>
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Course listings video</li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Job Details</li>
                         </ol>
                     </nav>
                 </div>
@@ -125,45 +101,38 @@
             </div>
         </div>
     </header>
-    <section class="job-section section-padding">
+
+    <%Video video = (Video) request.getAttribute("video");
+
+    %>
+    <section class="job-section section-padding pb-0">
         <div class="container">
             <div class="row">
 
-                <%Course course = (Course) request.getAttribute("course");
-                    List<Video> videos = (List<Video>) request.getAttribute("videos");%>
-                <div class="col-lg-6 col-12 text-center mx-auto mb-4">
-                    <h2>Khoá học: <%=course.getCourse_name()%></h2>
-                </div>
-                    <% if (videos != null && videos.size() > 0) {
-                        int i = 1;
-                        for (Video video : videos) {
-                    %>
-                <div class="col-lg-12 col-12">
-                    <div class="job-thumb d-flex">
-                        <div class="job-image-wrap bg-white shadow-lg">
-                            <img src="images/youtubeLogo.jpg" class="job-image img-fluid" alt="">
-                        </div>
+                <div class="col-lg-8 col-12">
+                    <h2 class="job-title mb-0"><%=video.getVideo_title()%>></h2>
 
-                        <div class="job-body d-flex flex-wrap flex-auto align-items-center ms-4">
-                            <div class="mb-3">
-                                <h4 class="job-title mb-lg-0">
-                                    <a href="videoController?videoID=<%=video.getIDVD()%>" class="job-title-link">Bài <%=i++%>. <%=video.getVideo_title()%></a>
-                                </h4>
-                            </div>
-                            <div class="job-section-btn-wrap">
-                                <a href="videoController?videoID=<%=video.getIDVD()%>" class="custom-btn btn">Học ngay</a>
-                            </div>
-                        </div>
+                    <div class="job-thumb job-thumb-detail">
+                        <%=video.getFile_path()%>
+                        <h4 class="mt-4 mb-2">Job Description</h4>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
-                    <%}
-                    }
-                    else {
-                    %>
-                    <h6>Không có bài giảng nào</h6>
-                    <%}%>
+                </div>
+                <div class="col-lg-4 col-12 mt-5 mt-lg-0">
+                    <div class="job-thumb job-thumb-detail-box bg-white shadow-lg">
+                        <h3>Danh sách học viên</h3>
+                        <%
+                            List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhViens");
+                            for (SinhVien sinhVien : sinhViens) System.out.println(sinhVien.getName());
+                            int i = 1;
+                            for(SinhVien sinhVien : sinhViens){
+                        %>
+                        <p><%=i++%>. <%=sinhVien.getName()%></p>
+                        <%}%>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 </main>
@@ -227,30 +196,3 @@
 
 </body>
 </html>
-
-<%--<%Course course = (Course) request.getAttribute("course");--%>
-<%--    List<Video> videos = (List<Video>) request.getAttribute("videos");%>--%>
-<%--<h1>Khoá học <%=course.getCourse_name()%></h1>--%>
-<%--<div class="menu">--%>
-<%--    <% if (videos != null && videos.size() > 0) {--%>
-<%--        int i = 1;--%>
-<%--        for (Video video : videos) {--%>
-<%--    %>--%>
-<%--    <a href="">Bài <%=i++%>. <%=video.getVideo_title()%><a>--%>
-<%--            <% }--%>
-<%--        }--%>
-<%--        else { %>--%>
-<%--        <p>Không có video nao de hien thi.</p>--%>
-<%--            <% } %>--%>
-<%--</div>--%>
-<%--<h2>Danh sách sinh viên</h2>--%>
-<%--<br>--%>
-<%--<%--%>
-<%--    List<SinhVien> sinhViens = (List<SinhVien>) request.getAttribute("sinhViens");--%>
-<%--    for(SinhVien sinhVien : sinhViens){--%>
-<%--%>--%>
-<%--<p><%=sinhVien.getName()%></p>--%>
-<%--<br>--%>
-<%--<%--%>
-<%--    }--%>
-<%--%>--%>
