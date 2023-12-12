@@ -77,19 +77,9 @@ public class LoginServlet extends HttpServlet {
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
 
-            // Kiểm tra xem người dùng có tồn tại trong bảng tương ứng không
             if (resultSet.next()) {
-                // Người dùng tồn tại, bạn có thể lấy thông tin khác nếu cần
-                // Ví dụ: String name = resultSet.getString("name");
-
-////                 Lưu thông tin người dùng vào session
-//                HttpSession session = request.getSession();
-//                session.setAttribute("email", email);
-////                session.setAttribute("role", role);
-
                 return true;
             } else {
-                // Người dùng không tồn tại hoặc thông tin đăng nhập không chính xác
                 return false;
             }
         } catch (SQLException e) {
