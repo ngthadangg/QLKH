@@ -30,7 +30,6 @@ public class CourseDAO {
                 Course course = new Course();
                 course.setCourse_id(resultSet.getInt("course_id"));
                 course.setCourse_name(resultSet.getString("course_name"));
-                // Các trường khác tương tự
 
                 courses.add(course);
             }
@@ -49,7 +48,6 @@ public class CourseDAO {
                     Course course = new Course();
                     course.setCourse_id(resultSet.getInt("course_id"));
                     course.setCourse_name(resultSet.getString("course_name"));
-                    // Các trường khác tương tự
 
                     courses.add(course);
                 }
@@ -57,6 +55,22 @@ public class CourseDAO {
         }
 
         return courses;
+    }
+    public Course getCoursesById(int IdCourse) throws SQLException {
+        Course course = new Course();
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM course WHERE course_id = ?");
+        ) {
+            statement.setInt(1, IdCourse);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    course.setCourse_id(resultSet.getInt("course_id"));
+                    course.setCourse_name(resultSet.getString("course_name"));
+                    // Các trường khác tương tự
+                }
+            }
+        }
+        return course;
     }
 
     public void addCourse(Course course) throws SQLException {
@@ -79,5 +93,4 @@ public class CourseDAO {
         DBUtil.closeConnection(connection);
     }
 
-    // Các phương thức khác tương tự
 }

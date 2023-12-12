@@ -26,7 +26,6 @@ public class VideoDAO {
                  ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
-//                Course course = new Course();
                 Video video = new Video();
                 video.setIDVD(resultSet.getInt("video_id"));
                 video.setVideo_title(resultSet.getString("video_title"));
@@ -53,7 +52,6 @@ public class VideoDAO {
                     video.setIDVD(resultSet.getInt("video_id"));
                     video.setVideo_title(resultSet.getString("video_title"));
                     video.setFile_path(resultSet.getString("file_path"));
-                    // Các trường khác tương tự
 
                     videos.add(video);
                 }

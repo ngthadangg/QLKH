@@ -106,7 +106,7 @@ public class LoginServlet extends HttpServlet {
         if (!Objects.equals(role, "admin")) {
             if (Objects.equals(role, "giangvien")) return "giangvienController";
             else {
-                return  "homeSV.jsp";
+                return  "sinhVienControllerSV";
             }
         } else {
             return "homeAD.jsp";

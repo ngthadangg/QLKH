@@ -44,7 +44,7 @@ public class SinhVienDAO {
             }
 
         } catch (SQLException e) {
-            System.err.println("Lỗi khi lấy IDGV: " + e.getMessage());
+            System.err.println("Lỗi khi lấy IDSV: " + e.getMessage());
             throw e;
         }
         return sinhvien;
@@ -82,7 +82,6 @@ public class SinhVienDAO {
                 }
             }
         } catch (SQLException e) {
-            // Log the exception (or rethrow it if you have a specific reason to do so)
             System.err.println("Lỗi khi lấy email: " + e.getMessage());
             throw e;
         }
@@ -109,6 +108,26 @@ public class SinhVienDAO {
             }
         }
         return sinhViens;
+    }
+    public List<Integer> getCoursesByStudentId(int IDSV) throws SQLException {
+        List<Integer> coursesID = new ArrayList<>();
+
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM sinhvien_course WHERE sinhvien_id = ?");
+        ) {
+            statement.setInt(1, IDSV);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    coursesID.add(resultSet.getInt("course_id"));
+                    // Các trường khác tương tự
+                }
+            }catch (SQLException e){
+                System.out.println("IDSV: " + IDSV);
+                System.err.println("Lỗi khi lấy course: " + e.getMessage());
+            }
+
+        }
+        return coursesID;
     }
 
     public void  addSinhVienToCourse(int IDSV, int courseID) throws SQLException{
