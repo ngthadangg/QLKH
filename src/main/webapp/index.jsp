@@ -35,12 +35,12 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <a class="navbar-brand d-flex align-items-center" href="index.jsp">
             <img src="images/logo.png" class="img-fluid logo-image">
 
             <div class="d-flex flex-column">
-                <strong class="logo-text">Gotto</strong>
-                <small class="logo-slogan">Online Job Portal</small>
+                <strong class="logo-text">Learn</strong>
+                <small class="logo-slogan">Elearning Course</small>
             </div>
         </a>
 
@@ -61,10 +61,20 @@
                 </li>
                 <li class="nav-item ms-lg-auto">
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link custom-btn btn" href="login.jsp">Login</a>
+                <%
+                    String name = null;
+                    if(name == null){ %>
+                    <li class="nav-item">
+                        <a class="nav-link custom-btn btn" href="login.jsp">Login</a>
+                    </li>
+                    <%
+                    }
+                    else {
+                %>
+                <li>
+                    <a class="nav-link custom-btn btn" href="#"><%=name%></a>
                 </li>
+                <%}%>
             </ul>
         </div>
     </div>
@@ -119,7 +129,7 @@
                                 </h4>
                                 <div class="d-flex align-items-center">
                                     <div class="job-image-wrap d-flex align-items-center bg-white shadow-lg mt-2 mb-4">
-    <%--                                    <img src="images/logos/soundcloud.png" class="job-image me-3 img-fluid" alt="">--%>
+                                        <img src="images/avaNull.png" class="job-image me-3 img-fluid" alt="">
 
     <%--                                    <p class="mb-0">Id giảng viên <%=course.getIDGV()%></p>--%>
                                     </div>

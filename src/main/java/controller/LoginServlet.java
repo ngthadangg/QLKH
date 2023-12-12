@@ -1,5 +1,7 @@
 package controller;
 
+import modelBEAN.SinhVien;
+import modelDAO.SinhVienDAO;
 import util.DBUtil;
 
 import java.io.IOException;
@@ -28,7 +30,15 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
             session.setAttribute("role", role);
+            SinhVien sinhVien = null;
+            try {
+                sinhVien = SinhVienDAO.getSVByEmail(email);
 
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            session.setAttribute("name", sinhVien.getName());
             String redirectURL = getRedirectURL(role);
             response.sendRedirect(redirectURL);
         } else {

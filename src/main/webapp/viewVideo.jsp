@@ -34,8 +34,8 @@
             <img src="images/logo.png" class="img-fluid logo-image">
 
             <div class="d-flex flex-column">
-                <strong class="logo-text">Gotto</strong>
-                <small class="logo-slogan">Online Job Portal</small>
+                <strong class="logo-text">Learn</strong>
+                <small class="logo-slogan">Elearning Course</small>
             </div>
         </a>
 
@@ -57,9 +57,20 @@
                 <li class="nav-item ms-lg-auto">
                 </li>
 
+                <%
+                    String name = (String) session.getAttribute("name");
+                    if(name == null){ %>
                 <li class="nav-item">
-                    <a class="nav-link custom-btn btn" href="#">Login</a>
+                    <a class="nav-link custom-btn btn" href="login.jsp">Login</a>
                 </li>
+                <%
+                }
+                else {
+                %>
+                <li>
+                    <a class="nav-link custom-btn btn" href="#"><%=name%></a>
+                </li>
+                <%}%>
             </ul>
         </div>
     </div>
