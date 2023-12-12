@@ -1,19 +1,14 @@
-<%@ page import="modelBEAN.Video" %>
-<%@ page import="java.util.List" %>
-<%@ page import="modelBEAN.Course" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page import="modelBEAN.Video" %><%--
+  Created by IntelliJ IDEA.
+  User: PC
+  Date: 12/12/2023
+  Time: 3:49 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Trang chủ</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <title>Chi tiết khoá học </title>
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -63,7 +58,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link custom-btn btn" href="login.jsp">Login</a>
+                    <a class="nav-link custom-btn btn" href="#">Login</a>
                 </li>
             </ul>
         </div>
@@ -71,6 +66,7 @@
 </nav>
 
 <main>
+
     <header class="site-header">
         <div class="section-overlay"></div>
 
@@ -78,12 +74,13 @@
             <div class="row">
 
                 <div class="col-lg-12 col-12 text-center">
-                    <h1 class="text-white">Danh sách các khoá học</h1>
+                    <h1 class="text-white">Tên khoá học</h1>
 
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Course listings</li>
+
+                            <li class="breadcrumb-item active" aria-current="page">Job Details</li>
                         </ol>
                     </nav>
                 </div>
@@ -91,58 +88,24 @@
             </div>
         </div>
     </header>
-    <section class="job-section section-padding">
+
+    <%Video video = (Video) request.getAttribute("video");%>
+    <section class="job-section section-padding pb-0">
         <div class="container">
-            <class class="row align-items-center">
-                <div class="col-lg-6 col-12 mb-lg-4">
-                    <h3>Các khoá học của bạn</h3>
-                </div>
-                <div class="col-lg-4 col-12 d-flex align-items-center ms-auto mb-5 mb-lg-4">
-                </div>
+            <div class="row">
 
-                <%
-                    // Lấy danh sách các video từ request
-                List<Course> courses = (List<Course>) request.getAttribute("myCourses");
-                if(courses != null && courses.size() > 0){
-                    for (Course course : courses){
-                    %>
-                    <div class="col-lg-4 col-md-6 col-12">
-                        <div class="job-thumb job-thumb-box">
-                            <div class="job-image-box-wrap">
-                                <a href="courseControllerSV?courseId=<%= course.getCourse_id() %>">
-                                    <img src="images/jobs/sound-engineer-working-studio-with-equipment.jpg" class="job-image img-fluid" alt="">
-                                </a>
-                            </div>
-                            <div class="job-body">
-                                <h4 class="job-title">
-                                    <a href="courseControllerSV?courseId=<%= course.getCourse_id()%>" class="job-title-link"><%=course.getCourse_name()%></a>
-                                </h4>
-                                <div class="d-flex align-items-center">
-                                    <div class="job-image-wrap d-flex align-items-center bg-white shadow-lg mt-2 mb-4">
-    <%--                                    <img src="images/logos/soundcloud.png" class="job-image me-3 img-fluid" alt="">--%>
+                <div class="col-lg-8 col-12">
+                    <h2 class="job-title mb-0"><%=video.getVideo_title()%>></h2>
 
-    <%--                                    <p class="mb-0">Id giảng viên <%=course.getIDGV()%></p>--%>
-                                    </div>
-                                    <a href="#" class="bi-bookmark ms-auto me-2">
-                                    </a>
+                    <div class="job-thumb job-thumb-detail">
+                        <%=video.getFile_path()%>
+                        <h4 class="mt-4 mb-2">Job Description</h4>
 
-                                    <a href="#" class="bi-heart">
-                                    </a>
-                                </div>
-                                <div class="d-flex align-items-center border-top pt-3">
-                                    <a href="courseControllerSV?courseId=<%= course.getCourse_id() %>" class="custom-btn btn ms-auto">Vào</a>
-                                </div>
-                            </div>
-                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
-                        <%}
-                    }
-                    else {
-                    %>
-                    <h5>Bạn chưa tham gia khoá học nào</h5>
-                    <%}%>
                 </div>
-            </class>
+
+            </div>
         </div>
     </section>
 </main>

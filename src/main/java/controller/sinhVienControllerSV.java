@@ -27,12 +27,10 @@ public class sinhVienControllerSV extends HttpServlet {
         HttpSession session = request.getSession();
         this.email = (String) session.getAttribute("email");
         String action = "";
-
-
         List<Course> myCourses = getMycourse();
         request.setAttribute("myCourses", myCourses);
         System.out.println("Dữ liệu đã được đặt vào request: " + myCourses);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("homeSV.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
 
         action = request.getParameter("courseID");

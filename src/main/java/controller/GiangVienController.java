@@ -100,8 +100,6 @@ public class GiangVienController  extends HttpServlet {
         String courseName = request.getParameter("courseName");
         System.out.println("courseName: " + courseName);
 
-        // ... Lấy thông tin khác nếu cần thiết
-
         // Gọi phương thức thêm khóa học
         CourseDAO courseDAO;
         try {
